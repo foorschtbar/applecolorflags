@@ -36,17 +36,26 @@ table.acf-table { margin: .5rem 0 1rem; border-collapse: separate; border-spacin
 table.acf-table th { text-align: left; font-weight: bold; }
 a.acf-del { text-decoration: none; padding: 0 .5rem; }
 
-/* Menu entries */
-.popupmenu a.acf-item:before {
+/* Menu entries (Mark popup menu and the contextmenu plugin's right-click menu) */
+.popupmenu a.acf-item:before,
+div.contextmenu a.acf-item:before {
     content: "\25CF" !important;
     font-family: inherit !important;
     font-size: 1.3em;
 }
-.popupmenu a.acf-red:before { color: #e5372f; }
-.popupmenu a.acf-orange:before { color: #f5a31a; }
-.popupmenu a.acf-yellow:before { color: #e6c200; }
-.popupmenu a.acf-green:before { color: #2fb94f; }
-.popupmenu a.acf-turquoise:before { color: #1fa9c4; }
-.popupmenu a.acf-purple:before { color: #a550d6; }
-.popupmenu a.acf-gray:before { color: #8e8e93; }
-.popupmenu a.acf-none:before { content: "\2715" !important; color: inherit; }
+.popupmenu a.acf-red:before,
+div.contextmenu a.acf-red:before { color: #e5372f !important; }
+.popupmenu a.acf-orange:before,
+div.contextmenu a.acf-orange:before { color: #f5a31a !important; }
+.popupmenu a.acf-yellow:before,
+div.contextmenu a.acf-yellow:before { color: #e6c200 !important; }
+.popupmenu a.acf-green:before,
+div.contextmenu a.acf-green:before { color: #2fb94f !important; }
+.popupmenu a.acf-turquoise:before,
+div.contextmenu a.acf-turquoise:before { color: #1fa9c4 !important; }
+.popupmenu a.acf-purple:before,
+div.contextmenu a.acf-purple:before { color: #a550d6 !important; }
+.popupmenu a.acf-gray:before,
+div.contextmenu a.acf-gray:before { color: #8e8e93 !important; }
+.popupmenu a.acf-none:before,
+div.contextmenu a.acf-none:before { content: "\2715" !important; color: inherit; }
