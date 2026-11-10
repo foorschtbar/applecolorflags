@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate composer.json
+        run: |
+          python3 -m json.tool composer.json > /dev/null
+          if grep -q '"version"' composer.json; then
+            echo "::error::Remove the \"version\" field from composer.json; Packagist derives versions from git tags."
+            exit 1
+          fi
+
+      - name: Build plugin archive
+        run: |
+          git archive --format=zip --prefix=applecolorflags/ -o "applecolorflags-${GITHUB_REF_NAME}.zip" "${GITHUB_REF_NAME}"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" "applecolorflags-${GITHUB_REF_NAME}.zip" \
+            --title "${GITHUB_REF_NAME}" --generate-notes
+
+      # Optional: Packagist normally updates itself via the GitHub webhook.
+      # This forces an update if PACKAGIST_USERNAME / PACKAGIST_TOKEN secrets are set.
+      - name: Notify Packagist
+        env:
+          PACKAGIST_USERNAME: ${{ secrets.PACKAGIST_USERNAME }}
+          PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
+        run: |
+          if [ -z "$PACKAGIST_TOKEN" ]; then echo "No Packagist secrets set, skipping."; exit 0; fi
+          curl -fsS -X POST \
+            "https://packagist.org/api/update-package?username=${PACKAGIST_USERNAME}&apiToken=${PACKAGIST_TOKEN}" \
+            -H 'content-type: application/json' \
+            -d "{\"repository\":{\"url\":\"https://github.com/${GITHUB_REPOSITORY}\"}}"

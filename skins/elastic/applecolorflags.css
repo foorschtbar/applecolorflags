@@ -1,0 +1,52 @@
+/* Message list: replace the red "flagged" look with the Apple colour */
+.acf-red { --acf: #e5372f; } .acf-orange { --acf: #f5a31a; } .acf-yellow { --acf: #e6c200; } .acf-green { --acf: #2fb94f; }
+.acf-turquoise { --acf: #1fa9c4; } .acf-purple { --acf: #a550d6; } .acf-gray { --acf: #8e8e93; }
+
+table.messagelist tr[class*="acf-"].flagged td,
+table.messagelist tr[class*="acf-"].flagged td.subject span.subject a,
+table.messagelist tr[class*="acf-"].flagged td.subject span.date,
+table.messagelist tr[class*="acf-"].flagged td.subject span.fromto,
+table.messagelist tr[class*="acf-"].flagged span.size {
+    color: var(--acf) !important;
+}
+table.messagelist tr[class*="acf-"].flagged span.flag span.flagged:before {
+    color: var(--acf) !important;
+}
+
+/* Quick toggle buttons / settings preview: bundled icon as mask, tinted with the flag colour */
+a.button.acf-qbtn:before,
+.acf-prev {
+    content: "" !important;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    font-family: inherit !important;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;  mask-repeat: no-repeat;
+    -webkit-mask-position: center;   mask-position: center;
+    -webkit-mask-size: contain;      mask-size: contain;
+    vertical-align: middle;
+}
+
+a.button.acf-qbtn.acf-tint:before,
+.acf-prev.acf-tint { background-color: var(--acf); }
+
+/* Settings table */
+table.acf-table { margin: .5rem 0 1rem; border-collapse: separate; border-spacing: .25rem .35rem; }
+table.acf-table th { text-align: left; font-weight: bold; }
+a.acf-del { text-decoration: none; padding: 0 .5rem; }
+
+/* Menu entries */
+.popupmenu a.acf-item:before {
+    content: "\25CF" !important;
+    font-family: inherit !important;
+    font-size: 1.3em;
+}
+.popupmenu a.acf-red:before { color: #e5372f; }
+.popupmenu a.acf-orange:before { color: #f5a31a; }
+.popupmenu a.acf-yellow:before { color: #e6c200; }
+.popupmenu a.acf-green:before { color: #2fb94f; }
+.popupmenu a.acf-turquoise:before { color: #1fa9c4; }
+.popupmenu a.acf-purple:before { color: #a550d6; }
+.popupmenu a.acf-gray:before { color: #8e8e93; }
+.popupmenu a.acf-none:before { content: "\2715" !important; color: inherit; }

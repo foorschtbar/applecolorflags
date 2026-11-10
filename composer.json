@@ -1,0 +1,28 @@
+{
+    "name": "foorschtbar/applecolorflags",
+    "type": "roundcube-plugin",
+    "description": "Shows Apple Mail colour flags in Roundcube and adds colour entries to the Mark menu and configurable quick-toggle toolbar buttons.",
+    "license": "MIT",
+    "keywords": [
+        "roundcube",
+        "plugin",
+        "apple mail",
+        "flags",
+        "colors",
+        "imap"
+    ],
+    "homepage": "https://github.com/foorschtbar/applecolorflags",
+    "authors": [
+        {
+            "name": "foorschtbar"
+        }
+    ],
+    "require": {
+        "php": ">=7.3.0",
+        "roundcube/plugin-installer": ">=0.3.5"
+    },
+    "support": {
+        "issues": "https://github.com/foorschtbar/applecolorflags/issues",
+        "source": "https://github.com/foorschtbar/applecolorflags"
+    }
+}
