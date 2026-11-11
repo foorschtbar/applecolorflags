@@ -120,7 +120,7 @@ class applecolorflags extends rcube_plugin
     /** Default for users who never saved the setting. */
     private static function default_toggles()
     {
-        return [['name' => 'Paperless', 'icon' => 'paperless', 'color' => 'green', 'tint' => true]];
+        return [];
     }
 
     /** Validated list of the user's quick toggles. */
