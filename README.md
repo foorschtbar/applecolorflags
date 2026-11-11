@@ -14,6 +14,12 @@ Apple Mail stores flag colours as standard IMAP keywords on top of `\Flagged`:
 | purple    | `\Flagged $MailFlagBit0 $MailFlagBit2` |
 | gray      | `\Flagged $MailFlagBit1 $MailFlagBit2` |
 
+## Screenshots
+
+| Mark menu with colour entries and a quick toggle button | Settings → Colour flags |
+|---|---|
+| ![Mark menu](.github/screenshot-mark-menu.png) | ![Settings](.github/screenshot-settings.png) |
+
 ## Features
 
 - Coloured flags/rows in the message list
