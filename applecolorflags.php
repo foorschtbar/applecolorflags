@@ -67,7 +67,7 @@ class applecolorflags extends rcube_plugin
             $this->add_hook('preferences_save', [$this, 'prefs_save']);
             $this->include_script('settings.js');
             $this->include_stylesheet($this->local_skin_path() . '/applecolorflags.css');
-            $this->rc->output->add_header($this->icon_css());
+            $this->add_icon_css();
             return;
         }
 
@@ -77,7 +77,7 @@ class applecolorflags extends rcube_plugin
         if ($this->rc->action == '' || $this->rc->action == 'show') {
             $this->include_script('applecolorflags.js');
             $this->include_stylesheet($this->local_skin_path() . '/applecolorflags.css');
-            $this->rc->output->add_header($this->icon_css());
+            $this->add_icon_css();
 
             // user-defined quick colour toggles -> toolbar buttons
             $toggles = $this->get_toggles();
@@ -158,6 +158,14 @@ class applecolorflags extends rcube_plugin
     {
         $name = preg_replace('/[\x00-\x1f\x7f]+/u', ' ', (string) $name);
         return mb_substr(trim($name), 0, self::MAX_NAME);
+    }
+
+    /** Only HTML output supports add_header(); AJAX (json) requests don't render a page. */
+    private function add_icon_css()
+    {
+        if (method_exists($this->rc->output, 'add_header')) {
+            $this->rc->output->add_header($this->icon_css());
+        }
     }
 
     /** CSS for the bundled icons (rendered as masks so they can take the flag colour). */
